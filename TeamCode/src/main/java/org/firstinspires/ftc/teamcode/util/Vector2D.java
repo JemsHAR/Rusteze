@@ -35,6 +35,8 @@ public class Vector2D {
         return new Vector2D(newX, newY, true);
     }
 
+
+
     public Vector2D mul(Vector2D vec) {
         double newX = this.getX() * vec.getX();
         double newY = this.getY() * vec.getY();
