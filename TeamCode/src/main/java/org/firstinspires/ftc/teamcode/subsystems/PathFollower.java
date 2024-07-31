@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.arcrobotics.ftclib.controller.PIDController;
+import com.arcrobotics.ftclib.hardware.motors.Motor;
 
 import org.firstinspires.ftc.teamcode.util.Vector2D;
 import org.firstinspires.ftc.teamcode.util.Path;
@@ -18,26 +19,31 @@ public class PathFollower {
 
     final double radius = 420; // in centermetres
 
-    public PIDController pid = new PIDController(0.02,0.03,0.3);
-
-
     public void followPath(Path path, Vector2D robotpos) {
         //position has x,y and direction
         //path has array list called nodePath and
 
         Vector2D tofirstnode = robotpos.sub(path.getNode(currentnode).getVector());
-        //move to this vector
-
+        MotorController.movementpid.setSetPoint(0);
         robotpos.getMag();
 
         if (tofirstnode.getMag() > radius) {
-            //move to firstnode
+           double output = MotorController.movementpid.calculate(
+                    tofirstnode.getMag()
+            );
+             //send output to motors
+
         } else {
             currentnode = 1;
             if (currentnode >= path.getNodes().size()) {
+
                 //stop this
             }
+
+
         }
+
+
     }
 
 
