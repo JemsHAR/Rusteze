@@ -8,4 +8,7 @@ public class Path {
     public void addNode(NodePoint node) {
         nodePath.add(node);
     } //so, there'll be a new instance of path for each path, and they can add nodes
+    public void progressQueue() {
+        nodePath.remove(0);
+    }
 }
