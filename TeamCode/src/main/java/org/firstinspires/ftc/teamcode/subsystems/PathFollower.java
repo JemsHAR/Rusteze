@@ -12,16 +12,16 @@ public class PathFollower {
     int currentnode = 0;
 
 
-    public followPath(Path path, Vector2D robotpos) {
+    public void followPath(Path path, Vector2D robotpos) {
         //position has x,y and direction
         //path has array list called nodePath and
 
         Vector2D tofirstnode = robotpos.sub(path.getNode(currentnode).getVector());
         //move to this vector
 
-        robotpos.getmag();
+        robotpos.getMag();
 
-        if (tofirstnode.getmag > radius) {
+        if (tofirstnode.getMag() > radius) {
             //move to firstnode
 
 
