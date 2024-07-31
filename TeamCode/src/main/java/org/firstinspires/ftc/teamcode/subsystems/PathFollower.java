@@ -1,6 +1,8 @@
 package org.firstinspires.ftc.teamcode.subsystems;
 
 import org.firstinspires.ftc.teamcode.util.Vector2D;
+import org.firstinspires.ftc.teamcode.util.Path;
+import org.firstinspires.ftc.teamcode.util.NodePoint;
 
 import java.util.ArrayList;
 import java.util.Vector;
@@ -10,6 +12,8 @@ import javax.swing.*;
 public class PathFollower {
 
     int currentnode = 0;
+
+    final double radius = 420;
 
 
     public void followPath(Path path, Vector2D robotpos) {
