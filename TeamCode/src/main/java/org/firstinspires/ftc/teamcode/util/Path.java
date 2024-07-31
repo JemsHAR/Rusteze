@@ -11,4 +11,12 @@ public class Path {
     public void progressQueue() {
         nodePath.remove(0);
     }
+
+    public NodePoint getNode(int current) {
+        return nodePath.get(current);
+    }
+
+    public ArrayList<NodePoint> getNodes() {
+        return nodePath;
+    }
 }

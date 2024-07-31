@@ -12,6 +12,10 @@ public class NodePoint {
         orientation = Aorientation;
     }
 
+    public Vector2D getVector() {
+        return node;
+    }
+
 
 
 
