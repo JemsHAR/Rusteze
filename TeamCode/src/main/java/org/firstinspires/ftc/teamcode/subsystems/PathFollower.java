@@ -13,7 +13,7 @@ public class PathFollower {
 
     int currentnode = 0;
 
-    final double radius = 420;
+    final double radius = 420; // in centermetres
 
 
     public void followPath(Path path, Vector2D robotpos) {
@@ -27,16 +27,13 @@ public class PathFollower {
 
         if (tofirstnode.getMag() > radius) {
             //move to firstnode
-
-
-        }else{
+        } else {
             currentnode = 1;
             if (currentnode >= path.getNodes().size()) {
                 //stop this
             }
-            }
-            
         }
+    }
 
 
     }
