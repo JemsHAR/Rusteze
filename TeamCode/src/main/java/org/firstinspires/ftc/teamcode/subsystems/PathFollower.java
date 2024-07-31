@@ -16,7 +16,7 @@ public class PathFollower {
 
     int currentnode = 0;
 
-    final double radius = 420;
+    final double radius = 420; // in centermetres
 
     public PIDController pid = new PIDController(0.02,0.03,0.3);
 
@@ -32,16 +32,13 @@ public class PathFollower {
 
         if (tofirstnode.getMag() > radius) {
             //move to firstnode
-
-
-        }else{
+        } else {
             currentnode = 1;
             if (currentnode >= path.getNodes().size()) {
                 //stop this
             }
-            }
-            
         }
+    }
 
 
     }
