@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.arcrobotics.ftclib.hardware.motors.Motor;
 
+import org.firstinspires.ftc.teamcode.util.Util;
 import org.firstinspires.ftc.teamcode.util.Vector2D;
 import org.firstinspires.ftc.teamcode.util.Path;
 
@@ -31,6 +32,7 @@ public class PathFollower {
            double output = MotorController.movementpid.calculate(
                     tofirstnode.getMag()
             );
+           MotorController.sendmotorpower(tofirstnode.getMag(), tofirstnode.getDir(), Util.convertangle());
              //send output to motors
 
         } else {
