@@ -14,7 +14,7 @@ public class PathFollower {
 
     final double radius = 20; // in centermetres
 
-    public void followPath(Path path, Vector2D robotpos) {
+    public boolean followPath(Path path, Vector2D robotpos) {
         //position has x,y and direction
         //path has array list called nodePath and
         NodePoint currentNode = path.getNode(currentnode);
@@ -28,19 +28,14 @@ public class PathFollower {
                     tofirstnode.getMag()
             );
            MotorController.sendMotorPower(tofirstnode.getMag(), tofirstnode.getDir(), Util.convertangle(RobotIMU.getYaw()-currentNode.getOrientation()));
-             //send output to motors
 
         } else {
             currentnode = 1;
             if (currentnode >= path.getNodes().size()) {
-
-                //stop this
+                return true;
             }
-
-
         }
-
-
+        return false;
     }
 
 
