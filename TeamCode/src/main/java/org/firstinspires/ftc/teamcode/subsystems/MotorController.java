@@ -24,7 +24,7 @@ public class MotorController {
         rightback = rightBack;
     }
 
-    public static void sendmotorpower(double distance, double direction, double rotation){
+    public static void sendMotorPower(double distance, double direction, double rotation){
         Vector2D vector = new Vector2D(1, direction,false);
 
         double max;

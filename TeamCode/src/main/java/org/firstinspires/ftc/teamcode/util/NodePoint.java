@@ -16,6 +16,8 @@ public class NodePoint {
         return node;
     }
 
+    public double getOrientation() { return orientation; }
+
 
 
 
