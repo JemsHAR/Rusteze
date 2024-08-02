@@ -10,15 +10,16 @@ import javax.swing.*;
 
 public class PathFollower {
 
-    int currentnode = 0;
+    static int currentnode = 0;
 
-    final double radius = 20; // in centermetres
+    final static double radius = 20; // in centermetres
 
-    public boolean followPath(Path path, Vector2D robotpos) {
+    public static boolean followPath(Path path, Vector2D robotpos) {
         //position has x,y and direction
         //path has array list called nodePath and
         NodePoint currentNode = path.getNode(currentnode);
         Vector2D tofirstnode = robotpos.sub(currentNode.getVector());
+
 
         MotorController.movementpid.setSetPoint(0);
         robotpos.getMag();

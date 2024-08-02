@@ -19,7 +19,7 @@ public class RobotIMU {
         imu.initialize(new IMU.Parameters(orientationOnRobot));
         robotIMU = imu;
 
-        ISBLUE = ISBLUE;
+        ISBLUE = BlueSide;
 
     }
 
