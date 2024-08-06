@@ -43,7 +43,7 @@ public class MotorController {
         max = Math.max(max, Math.abs(RightBackPower));
 
         if (max > 1.0) {
-            max -= 0.1;
+
             LeftFrontPower  /= max;
             RightFrontPower /= max;
             LeftBackPower   /= max;
