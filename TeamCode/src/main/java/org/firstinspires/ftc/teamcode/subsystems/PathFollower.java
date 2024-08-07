@@ -6,7 +6,6 @@ import org.firstinspires.ftc.teamcode.util.Path;
 
 import org.firstinspires.ftc.teamcode.util.NodePoint;
 
-import javax.swing.*;
 
 public class PathFollower {
 
