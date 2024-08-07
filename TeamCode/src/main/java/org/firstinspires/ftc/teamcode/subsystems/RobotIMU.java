@@ -9,7 +9,6 @@ import org.firstinspires.ftc.robotcore.external.navigation.YawPitchRollAngles;
 public class RobotIMU {
     private static double rawYaw;
     public static IMU robotIMU;
-
     private static boolean ISBLUE;
 
     public static void initialiseIMU(IMU imu, boolean BlueSide) { //imu = hardwareMap.get(IMU.class, "imu");
