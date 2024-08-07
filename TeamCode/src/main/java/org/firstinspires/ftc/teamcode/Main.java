@@ -43,9 +43,10 @@ public class Main extends LinearOpMode {
 
         while (opModeIsActive() && !(isStopRequested())) {
 
+            Vector2D currentTagVector = WebcamOne.processAprilTags(RobotIMU.getYaw());
 
-            if (WebcamOne.processAprilTags(RobotIMU.getYaw()) != null) {
-                Vector2D currentTagVector = WebcamOne.processAprilTags(RobotIMU.getYaw());
+
+            if (currentTagVector != null) {
                 telemetry.addLine(currentTagVector.toString());
                 telemetry.update();
 //            if (PathFollower.followPath(..., )) {

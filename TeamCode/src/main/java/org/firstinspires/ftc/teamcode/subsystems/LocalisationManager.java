@@ -63,7 +63,7 @@ public class LocalisationManager {
             }
         }   // end for() loop
 
-        return null;
+        return new Vector2D(0,0,false);
     }
 
 }
