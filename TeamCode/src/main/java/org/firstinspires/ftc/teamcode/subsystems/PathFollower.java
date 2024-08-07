@@ -25,13 +25,10 @@ public class PathFollower {
         robotpos.getMag();
 
         if (tofirstnode.getMag() > radius) {
-           double output = MotorController.movementpid.calculate(
-                    tofirstnode.getMag()
-            );
            MotorController.sendMotorPower(tofirstnode.getMag(), tofirstnode.getDir(), Util.convertangle(RobotIMU.getYaw()-currentNode.getOrientation()));
 
         } else {
-            currentnode = 1;
+            currentnode += 1;
             if (currentnode >= path.getNodes().size()) {
                 return true;
             }
