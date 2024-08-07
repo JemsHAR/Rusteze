@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.subsystems;
 
 import com.arcrobotics.ftclib.controller.PIDController;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.util.Vector2D;
 
@@ -22,6 +23,9 @@ public class MotorController {
         leftback = leftBack;
         rightfront = rightFront;
         rightback = rightBack;
+
+        leftfront.setDirection(DcMotorSimple.Direction.REVERSE);
+        rightfront.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     public static void sendMotorPower(double distance, double direction, double rotation){

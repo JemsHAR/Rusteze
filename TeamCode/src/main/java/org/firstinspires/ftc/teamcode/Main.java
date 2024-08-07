@@ -27,14 +27,14 @@ public class Main extends LinearOpMode {
     @Override
     public void runOpMode() {
         MotorController.initialiseMotors(
-                hardwareMap.get(DcMotor.class, "LeftFront"),
-                hardwareMap.get(DcMotor.class, "LeftBack"),
-                hardwareMap.get(DcMotor.class, "RightFront"),
-                hardwareMap.get(DcMotor.class, "RightBack")
+                hardwareMap.get(DcMotor.class, "2"), // left front is 2 REVERSE
+                hardwareMap.get(DcMotor.class, "3"), // left back is 3
+                hardwareMap.get(DcMotor.class, "1"), // right front is 1 REVERSE
+                hardwareMap.get(DcMotor.class, "0") // right back 0
         );
 
-        WebcamOne = new LocalisationManager(hardwareMap.get(WebcamName.class, "s"));
-        RobotIMU.initialiseIMU(hardwareMap.get(IMU.class, "Imu"), true);
+        WebcamOne = new LocalisationManager(hardwareMap.get(WebcamName.class, "Webcam 1"));
+        RobotIMU.initialiseIMU(hardwareMap.get(IMU.class, "IMU"), true);
 
 
         waitForStart();
