@@ -18,7 +18,7 @@ import org.firstinspires.ftc.teamcode.subsystems.MotorController;
 import org.firstinspires.ftc.teamcode.subsystems.PathFollower;
 import org.firstinspires.ftc.teamcode.subsystems.RobotIMU;
 
-@Autonomous(name="Basic: Omni Linear OpMode", group="Linear OpMode")
+@Autonomous(name="Localisation Manager Test", group="Linear OpMode")
 public class Main extends LinearOpMode {
 
     private static LocalisationManager WebcamOne;
