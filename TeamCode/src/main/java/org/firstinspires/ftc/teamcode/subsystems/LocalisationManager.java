@@ -12,19 +12,20 @@ import java.util.Vector;
 
 public class LocalisationManager {
 
+    private double lastMag;
+    private double lastDir;
+
     private static AprilTagProcessor aprilTag;
     private static VisionPortal visionPortal;
 
-    static HashMap<Integer, Vector2D> aprilTags = new HashMap<Integer, Vector2D>()
-    {{
-        put(0,new Vector2D(180,180,true));
-    }};
+    static HashMap<Integer, Vector2D> aprilTags = new HashMap<Integer, Vector2D>();
+//    {{
+//        put(0,new Vector2D(180,180,true));
+//    }};
 
 
     public LocalisationManager(WebcamName Camera) { // e.g., camera may be hardwareMap.get(WebcamName.class, "Webcam 1")
-        aprilTags.put(1,new Vector2D(43,100,true));
-        aprilTags.put(2,new Vector2D(22,103,true));
-        aprilTags.put(3,new Vector2D(234,30,true));
+        aprilTags.put(1,new Vector2D(180,180,true));
 
         aprilTag = new AprilTagProcessor.Builder().build();
 
@@ -50,7 +51,10 @@ public class LocalisationManager {
                 Vector2D aprilTagVec = aprilTags.get(detection.id); // april tag one
 
                 double m = detection.ftcPose.range;
-                double d = adjustedYaw - detection.ftcPose.bearing;
+                double d = adjustedYaw - Math.toDegrees(detection.ftcPose.bearing);
+
+                lastMag = m;
+                lastDir = d;
 
                 Vector2D currentVec = new Vector2D(m,d,false);
                 currentVec.add(aprilTagVec);
@@ -64,6 +68,14 @@ public class LocalisationManager {
         }   // end for() loop
 
         return new Vector2D(0,0,false);
+    }
+
+    public String getDebug() {
+        String debugMessage;
+
+        debugMessage = "Last FTC Range: " + lastMag + " . Last FTC DirL " + lastDir;
+
+        return debugMessage;
     }
 
 }
