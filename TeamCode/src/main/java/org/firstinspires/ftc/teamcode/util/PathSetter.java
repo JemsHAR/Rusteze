@@ -9,6 +9,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
@@ -16,13 +17,11 @@ public class PathSetter {
 
     private static Scanner file;
     static int rows;
-    private static ArrayList<NodePoint> pathList = new ArrayList<>();
-
-
+    private static HashMap<String, Path> pathList = new HashMap<>(); // changed to HashMap to support names
     public static void readNodes() throws IOException {
 
         //connect the program with the text file for reading.
-        File file = new File("C:\\Users\\shubh133365\\OneDrive - Brisbane Grammar School\\Robotics\\Code\\Off-Season\\Rusteze\\Rusteze\\TeamCode\\src\\main\\res\\PathSetterText");
+        File file = new File("C:\\Users\\guanao675209\\OneDrive - Brisbane Grammar School\\Documents\\GitHub\\Rusteze\\TeamCode\\src\\main\\res\\PathSetterText");
         Scanner readFile = new Scanner(file);
 
 
@@ -33,29 +32,49 @@ public class PathSetter {
         double y = 0;
         double direction = 0;
 
-        while (readFile.hasNextLine()) {
-            token = new StringTokenizer(readFile.nextLine(), ",");
+        // this is to store the current path and path name
+        Path currentPath = null;
+        String pathName = null;
 
-            //use the information from one line to initialize the variables needed to instatiate the object
-            x = Double.parseDouble(token.nextToken());
-            y = Double.parseDouble(token.nextToken());
-            direction = Double.parseDouble(token.nextToken());
+        while (readFile.hasNextLine()) { // while still is something left to read, read
+
+            String nextLine = readFile.nextLine();
+
+            if (nextLine.matches(".*[a-z].*")) { // check if the next line has any letter (name) for path
+                if (currentPath == null) { // check - should this be if currentpath is null or path name is null?
+                    pathName = nextLine; // this is in the first cycle of names where there is no need to reset
+                } else {
+                    pathList.put(pathName, currentPath);
+                    currentPath.clearPath(); // reset the path for the next cycle
+                }
+
+            } else {
+                token = new StringTokenizer(nextLine, ",");
+
+                //use the information from one line to initialize the variables needed to instatiate the object
+                x = Double.parseDouble(token.nextToken(););
+                y = Double.parseDouble(token.nextToken(););
+                direction = Double.parseDouble(token.nextToken());
+
+                Vector2D pathvec = new Vector2D(x, y, true);
+
+                NodePoint node = new NodePoint(pathvec, direction);
+                currentPath.addNode(node);
+            }
 
         }
 
-        Vector2D pathvec = new Vector2D(x, y, true);
 
-        NodePoint node = new NodePoint(pathvec, direction);
-        pathList.add(node);
 
     }
 
     public static void main(String[] args) throws IOException {
         readNodes();
 
-        for (NodePoint node : pathList) {
-            System.out.println(node);
-        }
+        System.out.println(pathList);
+//        for (Path node : pathList) {
+//            System.out.println(Path);
+//        }
 
 
     }
