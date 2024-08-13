@@ -73,10 +73,7 @@ public class LocalisationManager {
 
                 adjustedvecnum = adjustedVec;
 
-
-
                 return adjustedVec;
-
 
             } else {
                 return new Vector2D(0,0,false);
@@ -86,15 +83,14 @@ public class LocalisationManager {
         return new Vector2D(0,0,false);
     }
 
-
-
     public String getDebug() {
         String debugMessage;
 
-        debugMessage = "Last FTC Range: " + lastMag + " . Last FTC DirL " + lastDir;
+        debugMessage = "Last FTC Range: " + lastMag + " . Last FTC Dir " + lastDir;
 
         return debugMessage;
     }
+
 
 
 }

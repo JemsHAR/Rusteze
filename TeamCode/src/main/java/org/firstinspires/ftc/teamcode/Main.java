@@ -12,6 +12,7 @@ import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.subsystems.LocalisationManager;
 import org.firstinspires.ftc.teamcode.util.PathSetter;
 import org.firstinspires.ftc.teamcode.util.Vector2D;
+import org.firstinspires.ftc.teamcode.util.PathSelector;
 import org.firstinspires.ftc.teamcode.util.Util;
 import org.firstinspires.ftc.teamcode.util.Path;
 import org.firstinspires.ftc.teamcode.util.NodePoint;
@@ -38,7 +39,12 @@ public class Main extends LinearOpMode {
         WebcamOne = new LocalisationManager(hardwareMap.get(WebcamName.class, "Webcam 1"));
         RobotIMU.initialiseIMU(hardwareMap.get(IMU.class, "IMU"), true);
 
+        while (!isStarted() && !isStopRequested()) {
+            PathSelector.selectPath(gamepad1.dpad_left);
+            telemetry.addLine("Current Path: " + PathSelector.broadcastSelectedPath());
+        }
 
+        Path finalPath = PathSelector.getFinalPath();
 
         waitForStart();
 
@@ -47,7 +53,6 @@ public class Main extends LinearOpMode {
         while (opModeIsActive() && !(isStopRequested())) {
 
             Vector2D currentTagVector = WebcamOne.processAprilTags(Math.toDegrees(RobotIMU.getYaw()));
-
 
             if (currentTagVector != null) {
 
@@ -58,12 +63,14 @@ public class Main extends LinearOpMode {
                 telemetry.addLine("Original April Tag Vec:" + LocalisationManager.apriltagvec);
                 telemetry.addLine("the Hash map contains this" + LocalisationManager.aprilTags);
 
-
-
-
-                telemetry.update();
-
+//                if (PathFollower.followPath(finalPath,currentTagVector)) {
+//                    // do as so
+//                }
             }
+
+            telemetry.addLine("PATH SELECTED: " + PathSelector.broadcastSelectedPath());
+
+            telemetry.update();
         }
     }
 }

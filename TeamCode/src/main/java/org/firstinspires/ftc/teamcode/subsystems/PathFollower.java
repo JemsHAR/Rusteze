@@ -19,7 +19,6 @@ public class PathFollower {
         NodePoint currentNode = path.getNode(currentnode);
         Vector2D tofirstnode = robotpos.sub(currentNode.getVector());
 
-
         MotorController.movementpid.setSetPoint(0);
         robotpos.getMag();
 
