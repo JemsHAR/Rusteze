@@ -23,4 +23,6 @@ public class Path {
     public void clearPath() {
         nodePath.clear();
     }
+
+    public int getSize() {return nodePath.size();}
 }

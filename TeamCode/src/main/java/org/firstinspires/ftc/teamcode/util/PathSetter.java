@@ -41,19 +41,17 @@ public class PathSetter {
             String nextLine = readFile.nextLine();
 
             if (nextLine.matches(".*[a-z].*")) { // check if the next line has any letter (name) for path
-                if (currentPath == null) { // check - should this be if currentpath is null or path name is null?
-                    pathName = nextLine; // this is in the first cycle of names where there is no need to reset
-                } else {
+                if (currentPath != null) { // check - should this be if currentpath is null or path name is null?
                     pathList.put(pathName, currentPath);
-                    currentPath.clearPath(); // reset the path for the next cycle
                 }
-
+                currentPath = new Path(); // reset the path for the next cycle
+                pathName = nextLine;
             } else {
                 token = new StringTokenizer(nextLine, ",");
 
                 //use the information from one line to initialize the variables needed to instatiate the object
-                x = Double.parseDouble(token.nextToken(););
-                y = Double.parseDouble(token.nextToken(););
+                x = Double.parseDouble(token.nextToken());
+                y = Double.parseDouble(token.nextToken());
                 direction = Double.parseDouble(token.nextToken());
 
                 Vector2D pathvec = new Vector2D(x, y, true);
@@ -64,7 +62,7 @@ public class PathSetter {
 
         }
 
-
+        pathList.put(pathName, currentPath);
 
     }
 
