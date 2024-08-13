@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.IMU;
 
 // importing subsystems/util
+import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.teamcode.subsystems.LocalisationManager;
 import org.firstinspires.ftc.teamcode.util.PathSetter;
@@ -53,6 +54,12 @@ public class Main extends LinearOpMode {
                 telemetry.addLine(currentTagVector.toString());
                 telemetry.addLine("IMU: " + Math.toDegrees(RobotIMU.getYaw()));
                 telemetry.addLine(WebcamOne.getDebug());
+                telemetry.addLine("Adjusted Vec" + LocalisationManager.adjustedvecnum);
+                telemetry.addLine("Original April Tag Vec:" + LocalisationManager.apriltagvec);
+                telemetry.addLine("the Hash map contains this" + LocalisationManager.aprilTags);
+
+
+
 
                 telemetry.update();
 

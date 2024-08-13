@@ -18,14 +18,22 @@ public class LocalisationManager {
     private static AprilTagProcessor aprilTag;
     private static VisionPortal visionPortal;
 
-    static HashMap<Integer, Vector2D> aprilTags = new HashMap<Integer, Vector2D>();
+    public static Vector2D adjustedvecnum;
+
+    public static Vector2D apriltagvec;
+
+    public static HashMap<Integer, Vector2D> aprilTags = new HashMap<Integer, Vector2D>();
+
+
 //    {{
 //        put(0,new Vector2D(180,180,true));
 //    }};
 
 
     public LocalisationManager(WebcamName Camera) { // e.g., camera may be h ardwareMap.get(WebcamName.class, "Webcam 1")
-        aprilTags.put(1,new Vector2D(180,180,true));
+        aprilTags.put(1,new Vector2D(163,30,true));
+        aprilTags.put(2,new Vector2D(178,30,true));
+        aprilTags.put(3,new Vector2D(193,30,true));
 
         aprilTag = new AprilTagProcessor.Builder().build();
 
@@ -39,17 +47,21 @@ public class LocalisationManager {
 
         visionPortal = builder.build();
 
+
     }
 
     public Vector2D processAprilTags(double adjustedYaw) {
         List<AprilTagDetection> currentDetections = aprilTag.getDetections();
+        aprilTags.put(1,new Vector2D(163,30,true));
+        aprilTags.put(2,new Vector2D(178,30,true));
+        aprilTags.put(3,new Vector2D(193,30,true));
 
         // Step through the list of detections and display info for each one.
         for (AprilTagDetection detection : currentDetections) {
             if ((detection.metadata != null) && aprilTags.containsKey(detection.id)) {
 
                 Vector2D aprilTagVec = aprilTags.get(detection.id); // april tag one
-
+                apriltagvec = aprilTagVec;
                 double m = detection.ftcPose.range;
                 double d = adjustedYaw - detection.ftcPose.bearing;
 
@@ -58,6 +70,10 @@ public class LocalisationManager {
 
                 Vector2D currentVec = new Vector2D(m,d,false);
                 Vector2D adjustedVec = currentVec.add(aprilTagVec);
+
+                adjustedvecnum = adjustedVec;
+
+
 
                 return adjustedVec;
 
@@ -70,6 +86,8 @@ public class LocalisationManager {
         return new Vector2D(0,0,false);
     }
 
+
+
     public String getDebug() {
         String debugMessage;
 
@@ -77,5 +95,6 @@ public class LocalisationManager {
 
         return debugMessage;
     }
+
 
 }

@@ -10,7 +10,7 @@ public class Vector2D {
         if (isCart) {
             // If Cartesian is true, valOne is 'x' and valTwo is 'y'
             m = Math.sqrt((valOne*valOne) + (valTwo*valTwo));
-            d = Math.toRadians(Math.atan2(valOne,valTwo));
+            d = Math.atan2(valTwo,valOne);
         } else {
             m = valOne;
             d = valTwo;
