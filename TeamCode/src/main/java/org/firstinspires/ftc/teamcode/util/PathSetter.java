@@ -17,8 +17,9 @@ public class PathSetter {
 
     private static Scanner file;
     static int rows;
+
     private static HashMap<String, Path> pathList = new HashMap<>(); // changed to HashMap to support names
-    public static void readNodes() throws IOException {
+    public static void readNodeFile() throws IOException {
 
         //connect the program with the text file for reading.
         File file = new File("C:\\Users\\guanao675209\\OneDrive - Brisbane Grammar School\\Documents\\GitHub\\Rusteze\\TeamCode\\src\\main\\res\\PathSetterText");
@@ -67,7 +68,7 @@ public class PathSetter {
     }
 
     public static void main(String[] args) throws IOException {
-        readNodes();
+        readNodeFile();
 
         System.out.println(pathList);
 //        for (Path node : pathList) {
