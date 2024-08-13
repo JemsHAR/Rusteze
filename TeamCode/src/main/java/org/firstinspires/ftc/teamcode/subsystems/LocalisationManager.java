@@ -24,7 +24,7 @@ public class LocalisationManager {
 //    }};
 
 
-    public LocalisationManager(WebcamName Camera) { // e.g., camera may be hardwareMap.get(WebcamName.class, "Webcam 1")
+    public LocalisationManager(WebcamName Camera) { // e.g., camera may be h ardwareMap.get(WebcamName.class, "Webcam 1")
         aprilTags.put(1,new Vector2D(180,180,true));
 
         aprilTag = new AprilTagProcessor.Builder().build();
@@ -51,15 +51,15 @@ public class LocalisationManager {
                 Vector2D aprilTagVec = aprilTags.get(detection.id); // april tag one
 
                 double m = detection.ftcPose.range;
-                double d = adjustedYaw - Math.toDegrees(detection.ftcPose.bearing);
+                double d = adjustedYaw - detection.ftcPose.bearing;
 
                 lastMag = m;
                 lastDir = d;
 
                 Vector2D currentVec = new Vector2D(m,d,false);
-                currentVec.add(aprilTagVec);
+                Vector2D adjustedVec = currentVec.add(aprilTagVec);
 
-                return currentVec;
+                return adjustedVec;
 
 
             } else {
