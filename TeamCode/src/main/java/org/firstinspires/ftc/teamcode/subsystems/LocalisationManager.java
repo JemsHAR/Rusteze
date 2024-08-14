@@ -52,9 +52,6 @@ public class LocalisationManager {
 
     public Vector2D processAprilTags(double adjustedYaw) {
         List<AprilTagDetection> currentDetections = aprilTag.getDetections();
-        aprilTags.put(1,new Vector2D(163,30,true));
-        aprilTags.put(2,new Vector2D(178,30,true));
-        aprilTags.put(3,new Vector2D(193,30,true));
 
         // Step through the list of detections and display info for each one.
         for (AprilTagDetection detection : currentDetections) {
