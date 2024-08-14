@@ -5,6 +5,7 @@ import org.firstinspires.ftc.teamcode.util.Vector2D;
 import org.firstinspires.ftc.vision.VisionPortal;
 import org.firstinspires.ftc.vision.apriltag.AprilTagDetection;
 import org.firstinspires.ftc.vision.apriltag.AprilTagProcessor;
+import org.firstinspires.ftc.teamcode.util.Util;
 
 import java.util.HashMap;
 import java.util.List;
@@ -52,9 +53,6 @@ public class LocalisationManager {
 
     public Vector2D processAprilTags(double adjustedYaw) {
         List<AprilTagDetection> currentDetections = aprilTag.getDetections();
-        aprilTags.put(1,new Vector2D(163,30,true));
-        aprilTags.put(2,new Vector2D(178,30,true));
-        aprilTags.put(3,new Vector2D(193,30,true));
 
         // Step through the list of detections and display info for each one.
         for (AprilTagDetection detection : currentDetections) {
@@ -62,7 +60,7 @@ public class LocalisationManager {
 
                 Vector2D aprilTagVec = aprilTags.get(detection.id); // april tag one
                 apriltagvec = aprilTagVec;
-                double m = detection.ftcPose.range;
+                double m = Util.toCM(detection.ftcPose.range);
                 double d = adjustedYaw - detection.ftcPose.bearing;
 
                 lastMag = m;
@@ -75,8 +73,6 @@ public class LocalisationManager {
 
                 return adjustedVec;
 
-            } else {
-                return new Vector2D(0,0,false);
             }
         }   // end for() loop
 
