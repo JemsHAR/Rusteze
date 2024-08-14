@@ -10,7 +10,7 @@ public class Vector2D {
         if (isCart) {
             // If Cartesian is true, valOne is 'x' and valTwo is 'y'
             m = Math.sqrt((valOne*valOne) + (valTwo*valTwo));
-            d = Math.atan2(valTwo,valOne);
+            d = Math.toDegrees(Math.atan2(valTwo,valOne));
         } else {
             m = valOne;
             d = valTwo;
@@ -54,11 +54,11 @@ public class Vector2D {
     }
 
     public double getX() {
-        return Math.cos(d)*m;
+        return Math.cos(Math.toRadians(d))*m;
     }
 
     public double getY() {
-        return Math.sin(d)*m;
+        return Math.sin(Math.toRadians(d))*m;
     }
 
     public double getMag() {
