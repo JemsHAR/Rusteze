@@ -19,9 +19,13 @@ public class LocalisationManager {
     private static AprilTagProcessor aprilTag;
     private static VisionPortal visionPortal;
 
+
     public static Vector2D adjustedvecnum;
 
     public static Vector2D apriltagvec;
+
+    public static double poseBearing;
+    public static Vector2D currentrobvec;
 
     public static HashMap<Integer, Vector2D> aprilTags = new HashMap<Integer, Vector2D>();
 
@@ -66,7 +70,9 @@ public class LocalisationManager {
                 lastMag = m;
                 lastDir = d;
 
+
                 Vector2D currentVec = new Vector2D(m,d,false);
+                currentrobvec = currentVec;
                 Vector2D adjustedVec = currentVec.add(aprilTagVec);
 
                 adjustedvecnum = adjustedVec;
@@ -82,11 +88,9 @@ public class LocalisationManager {
     public String getDebug() {
         String debugMessage;
 
-        debugMessage = "Last FTC Range: " + lastMag + " . Last FTC Dir " + lastDir;
+        debugMessage = "Last FTC Range: " + lastMag + " . Last FTC Dir " + lastDir + ". Last FTC Bearing: " + poseBearing;
 
         return debugMessage;
     }
-
-
 
 }

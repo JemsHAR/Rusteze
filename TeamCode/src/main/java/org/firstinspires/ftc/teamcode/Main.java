@@ -62,6 +62,7 @@ public class Main extends LinearOpMode {
                 telemetry.addLine("Adjusted Vec" + LocalisationManager.adjustedvecnum);
                 telemetry.addLine("Original April Tag Vec:" + LocalisationManager.apriltagvec);
                 telemetry.addLine("the Hash map contains this" + LocalisationManager.aprilTags);
+                telemetry.addLine("Current Vector:" + LocalisationManager.currentrobvec);
 
 //                if (PathFollower.followPath(finalPath,currentTagVector)) {
 //                    // do as so

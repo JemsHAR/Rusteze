@@ -1,76 +1,68 @@
 package org.firstinspires.ftc.teamcode.util;
+
+import androidx.annotation.NonNull;
+
 public class Vector2D {
 
     // Magnitude and Direction values
-    private double m;
-    private double d;
+    private double i;
+    private double j;
 
-    // Constructor
-    public Vector2D(double valOne, double valTwo, boolean isCart) {
-        if (isCart) {
-            // If Cartesian is true, valOne is 'x' and valTwo is 'y'
-            m = Math.sqrt((valOne*valOne) + (valTwo*valTwo));
-            d = Math.toDegrees(Math.atan2(valTwo,valOne));
-        } else {
-            m = valOne;
-            d = valTwo;
+
+
+    public Vector2D(double na, double nb, boolean isCart) {
+        i = na;
+        j = nb;
+        if (isCart == false) {
+            i = na * Math.cos(Math.toRadians(nb));
+            j = na * Math.sin(Math.toRadians(nb));
         }
     }
 
-    /*
-    Vector2D add adds the current vector to the vector passed as an argument.
-    Returns another vectors that is the sum of the two vectors.
-     */
+    //getter for I, J
 
-    public Vector2D add(Vector2D vec) {
-        double newX = this.getX() + vec.getX();
-        double newY = this.getY() + vec.getY();
-
-        return new Vector2D(newX, newY, true);
+    public double getMag() {
+        double m = Math.sqrt(Math.pow(j,2) + Math.pow(i,2));
+        return m; // <-- calculate M
     }
 
-    public Vector2D sub(Vector2D vec) {
-        double newX = this.getX() - vec.getX();
-        double newY = this.getY() - vec.getY();
-        return new Vector2D(newX, newY, true);
+    public double getDir(){
+        double d = Math.toDegrees(Math.atan2(j, i));
+        return d;
+    }
+    //^ same as above for D
+
+    public Vector2D rot(double rot) {
+        return new Vector2D(getMag(), (getDir() + rot)%360, true);
     }
 
-
-
-    public Vector2D mul(Vector2D vec) {
-        double newX = this.getX() * vec.getX();
-        double newY = this.getY() * vec.getY();
-
-        return new Vector2D(newX, newY, true);
+    public Vector2D mul(Vector2D vector1){
+        return new Vector2D(i * vector1.i, j * vector1.j, true);
     }
 
-    public double[] getValues() {
-        return new double[]{this.getX(), this.getY()};
+    public Vector2D vecrot(Vector2D vector1){
+        return new Vector2D(getMag(),(vector1.getDir() + getDir())%360, false);
     }
-
-
-    public Vector2D rot(double angle) {
-        return new Vector2D(m,(d+angle)%360,false);
+    public Vector2D add(Vector2D vector1){
+        return new Vector2D(i + vector1.i, j + vector1.j, false);
+    }
+    public Vector2D sub(Vector2D vector1) {
+        return new Vector2D(i - vector1.i, j - vector1.j, false);
     }
 
     public double getX() {
-        return Math.cos(Math.toRadians(d))*m;
+        return i;
     }
 
     public double getY() {
-        return Math.sin(Math.toRadians(d))*m;
+        return j;
     }
 
-    public double getMag() {
-        return m;
-    }
 
-    public double getDir() {
-        return d;
-    }
-
+    @NonNull
     public String toString() {
-        return "(" + this.getX() + ", " + this.getY() + ")";
+        return "(" + i + "," + j + ")";
     }
+
 
 }
