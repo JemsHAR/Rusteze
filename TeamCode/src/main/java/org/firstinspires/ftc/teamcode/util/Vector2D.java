@@ -33,7 +33,7 @@ public class Vector2D {
     //^ same as above for D
 
     public Vector2D rot(double rot) {
-        return new Vector2D(getMag(), (getDir() + rot)%360, true);
+        return new Vector2D(getMag(), (getDir() + rot)%360, false);
     }
 
     public Vector2D mul(Vector2D vector1){
@@ -44,10 +44,10 @@ public class Vector2D {
         return new Vector2D(getMag(),(vector1.getDir() + getDir())%360, false);
     }
     public Vector2D add(Vector2D vector1){
-        return new Vector2D(i + vector1.i, j + vector1.j, false);
+        return new Vector2D(i + vector1.i, j + vector1.j, true);
     }
     public Vector2D sub(Vector2D vector1) {
-        return new Vector2D(i - vector1.i, j - vector1.j, false);
+        return new Vector2D(i - vector1.i, j - vector1.j, true);
     }
 
     public double getX() {
