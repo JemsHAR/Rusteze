@@ -72,7 +72,7 @@ public class LocalisationManager {
 
 
                 Vector2D currentVec = new Vector2D(m,d,false);
-                currentrobvec = currentVec;
+                currentVec = currentVec.mul(new Vector2D(1, -1, true));                currentrobvec = currentVec;
                 Vector2D adjustedVec = aprilTagVec.sub(currentVec);
 
                 adjustedvecnum = adjustedVec;

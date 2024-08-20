@@ -21,4 +21,6 @@ public class Util {
         return inches*2.54;
     }
 
+    public static double toRadians(double degree) { return (((90 - degree)%360)*Math.PI)/180; }
+
 }

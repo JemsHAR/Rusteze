@@ -12,8 +12,8 @@ public class Vector2D {
 
     public Vector2D(double na, double nb, boolean isCart) {
         if (!isCart) {
-            i = na * Math.cos(Math.toRadians(nb));
-            j = na * Math.sin(Math.toRadians(nb));
+            i = na * Math.cos(Util.toRadians(nb));
+            j = na * Math.sin(Util.toRadians(nb));
         } else {
             i = na;
             j = nb;
@@ -28,7 +28,7 @@ public class Vector2D {
     }
 
     public double getDir(){
-        double d = Math.toDegrees(Math.atan2(j, i));
+        double d = Math.toDegrees(Math.atan2(j, i)); //TODO: fix todegrees
         return d;
     }
     //^ same as above for D
