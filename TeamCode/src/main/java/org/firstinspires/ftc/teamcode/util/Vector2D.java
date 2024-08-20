@@ -11,11 +11,12 @@ public class Vector2D {
 
 
     public Vector2D(double na, double nb, boolean isCart) {
-        i = na;
-        j = nb;
-        if (isCart == false) {
+        if (!isCart) {
             i = na * Math.cos(Math.toRadians(nb));
             j = na * Math.sin(Math.toRadians(nb));
+        } else {
+            i = na;
+            j = nb;
         }
     }
 
@@ -44,10 +45,10 @@ public class Vector2D {
         return new Vector2D(getMag(),(vector1.getDir() + getDir())%360, false);
     }
     public Vector2D add(Vector2D vector1){
-        return new Vector2D(i + vector1.i, j + vector1.j, true);
+        return new Vector2D(i + vector1.getX(), j + vector1.getY(), true);
     }
     public Vector2D sub(Vector2D vector1) {
-        return new Vector2D(i - vector1.i, j - vector1.j, true);
+        return new Vector2D(i - vector1.getX(), j - vector1.getY(), true);
     }
 
     public double getX() {
