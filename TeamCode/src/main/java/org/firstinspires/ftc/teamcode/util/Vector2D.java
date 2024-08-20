@@ -28,7 +28,7 @@ public class Vector2D {
     }
 
     public double getDir(){
-        double d = Math.toDegrees(Math.atan2(j, i)); //TODO: fix todegrees
+        double d = Util.toDegrees(Math.atan2(j, i)); // hopefully fixed
         return d;
     }
     //^ same as above for D
