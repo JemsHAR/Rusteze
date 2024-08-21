@@ -9,7 +9,6 @@ import org.firstinspires.ftc.teamcode.util.Util;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Vector;
 
 public class LocalisationManager {
 
@@ -20,7 +19,7 @@ public class LocalisationManager {
     private static VisionPortal visionPortal;
 
 
-    public static Vector2D adjustedvecnum;
+    public static Vector2D finalrobotpos;
 
     public static Vector2D apriltagvec;
 
@@ -59,6 +58,8 @@ public class LocalisationManager {
         List<AprilTagDetection> currentDetections = aprilTag.getDetections();
 
         // Step through the list of detections and display info for each one.
+        Vector2D prevVector = new Vector2D(10000, 0, false);
+        Vector2D smallestVector = null;
         for (AprilTagDetection detection : currentDetections) {
             if ((detection.metadata != null) && aprilTags.containsKey(detection.id)) {
 
@@ -75,14 +76,20 @@ public class LocalisationManager {
                 currentVec = currentVec.mul(new Vector2D(1, -1, true));                currentrobvec = currentVec;
                 Vector2D adjustedVec = aprilTagVec.sub(currentVec);
 
-                adjustedvecnum = adjustedVec;
-
-                return adjustedVec;
-
+                if (currentVec.getMag() < prevVector.getMag()) {
+                    smallestVector = aprilTagVec.sub(currentVec);
+                }
+                prevVector = currentVec;
             }
-        }   // end for() loop
 
-        return new Vector2D(0,0,false);
+
+        }   // end for() loop
+        if (smallestVector != null) {
+            return smallestVector;
+        } else {
+            return new Vector2D(0,0,false);
+        }
+
     }
 
     public String getDebug() {
