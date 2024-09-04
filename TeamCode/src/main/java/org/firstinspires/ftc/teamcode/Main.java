@@ -60,9 +60,9 @@ public class Main extends LinearOpMode {
                 telemetry.addLine("the Hash map contains this" + LocalisationManager.aprilTags);
                 telemetry.addLine("Current Vector:" + LocalisationManager.currentrobvec);
 
-//                if (PathFollower.followPath(finalPath,currentTagVector)) {
-//                    // do as so
-//                }
+                if (PathFollower.followPath(finalPath,currentTagVector)) {
+                    // do as so
+                }
             }
 
             telemetry.addLine("PATH SELECTED: " + PathSelector.broadcastSelectedPath());

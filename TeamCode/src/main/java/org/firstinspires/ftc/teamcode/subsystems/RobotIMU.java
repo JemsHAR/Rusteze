@@ -29,4 +29,9 @@ public class RobotIMU {
         YawPitchRollAngles orientation = robotIMU.getRobotYawPitchRollAngles();
         return orientation.getYaw(AngleUnit.RADIANS);
     }
+
+    public static String getDebug() {
+        return "Robot Dir" + robotIMU.getRobotOrientationAsQuaternion();
+
+    }
 }
