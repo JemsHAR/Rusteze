@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.util;
 import android.content.res.AssetFileDescriptor;
 import android.content.res.AssetManager;
+import android.os.Environment;
 
 import org.w3c.dom.Node;
 
@@ -17,12 +18,13 @@ public class PathSetter {
 
     private static Scanner file;
     static int rows;
+    String logFilePath = String.format("%s/FIRST/data/PathSetterText.txt", Environment.getExternalStorageDirectory().getAbsolutePath());
 
     public static HashMap<String, Path> pathList = new HashMap<>(); // changed to HashMap to support names
     public static void readNodeFile() throws IOException {
 
         //connect the program with the text file for reading.
-        File file = new File("C:\\Users\\guanao675209\\OneDrive - Brisbane Grammar School\\Documents\\GitHub\\Rusteze\\TeamCode\\src\\main\\res\\PathSetterText");
+        File file = new File("%s/FIRST/data/PathSetterText.txt");
         Scanner readFile = new Scanner(file);
 
 

@@ -25,10 +25,10 @@ public class Main extends LinearOpMode {
     @Override
     public void runOpMode() {
         MotorController.initialiseMotors(
-                hardwareMap.get(DcMotor.class, "2"), // left front is 2 REVERSE
-                hardwareMap.get(DcMotor.class, "3"), // left back is 3
-                hardwareMap.get(DcMotor.class, "1"), // right front is 1 REVERSE
-                hardwareMap.get(DcMotor.class, "0") // right back 0
+                hardwareMap.get(DcMotor.class, "frontLeftMotor"), // left front is 2 REVERSE
+                hardwareMap.get(DcMotor.class, "backLeftMotor"), // left back is 3
+                hardwareMap.get(DcMotor.class, "frontRightMotor"), // right front is 1 REVERSE
+                hardwareMap.get(DcMotor.class, "backRightMotor") // right back 0
         );
 
         WebcamOne = new LocalisationManager(hardwareMap.get(WebcamName.class, "Webcam 1"));
@@ -36,8 +36,7 @@ public class Main extends LinearOpMode {
 
         while (!isStarted() && !isStopRequested()) {
             PathSelector.selectPath(gamepad1.dpad_left);
-            telemetry.addLine("Current Path: " + PathSelector.broadcastSelectedPath());
-        }
+            telemetry.addLine("Current Path: " + PathSelector.broadcastSelectedPath());        }
 
         Path finalPath = PathSelector.getFinalPath();
 
